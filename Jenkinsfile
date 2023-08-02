@@ -16,7 +16,7 @@ pipeline {
 
         stage('Build') {
             steps {
-                // Виконання команди для білду програми
+                // Виконання команди для збирання всіх модулів
                 sh 'go mod download'
                 
                 sh 'make backend'
