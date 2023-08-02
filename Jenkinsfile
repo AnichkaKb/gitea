@@ -18,7 +18,7 @@ pipeline {
             steps {
                 // Виконання команди для збирання всіх модулів
                 sh 'go mod download'
-                
+                sh 'go get ./...'
                 sh 'make backend'
                 sh 'screen ./gitea&'
                 //sh 'TAGS="bindata" make build' // Виконати ваші команди для білду
