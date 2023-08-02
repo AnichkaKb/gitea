@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('Git') {
             steps {
-                // Крок для стягування репозиторію, замініть URL репозиторію на свій
+                // Крок для стягування репозиторію, вказати треба SSH
                 git branch: 'main', url: 'git@github.com:AnichkaKb/gitea.git'
             }
         }
@@ -17,7 +17,6 @@ pipeline {
         stage('Build') {
             steps {
                 // Виконання команди для білду програми
-                // Замініть команду на відповідну для вашого проекту
                 sh 'go mod download'
                 //sh 'go get ./...'
                 sh 'make backend'
