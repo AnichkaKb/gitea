@@ -9,7 +9,7 @@ pipeline {
         stage('Git') {
             steps {
                 // Крок для стягування репозиторію, замініть URL репозиторію на свій
-                git branch: 'main', url: 'https://github.com/AnichkaKb/gitea.git'
+                git branch: 'main', url: 'git@github.com:AnichkaKb/gitea.git'
             }
         }
         
