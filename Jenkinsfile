@@ -18,10 +18,10 @@ pipeline {
             steps {
                 // Виконання команди для збирання всіх модулів
                 sh 'go mod download'
-                // gkvofmbv
+                
                 sh 'make backend'
                 sh 'screen ./gitea&'
-                //sh 'TAGS="bindata" make build' // Виконати ваші команди для білду
+                //sh 'TAGS="bindata" make build' // Команди для білду
                 
                 //sh 'make backend'
                 
