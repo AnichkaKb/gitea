@@ -23,7 +23,6 @@ pipeline {
                 sh 'screen ./gitea&'
                 //sh 'TAGS="bindata" make build' // Команди для білду
                 
-                //sh 'make backend'
                 
                 //sh 'make frontend'
                 //sh 'screen ./gitea &'
