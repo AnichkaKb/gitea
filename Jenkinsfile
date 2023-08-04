@@ -17,9 +17,6 @@ pipeline {
         stage('Build') {
             steps {
                 // Виконання команди для збирання всіх модулів
-                
-                sh 'echo homenet | sudo -S apt-get install build-essential'
-                sh 'CGO_ENABLED=1'
                 sh 'go mod download'
                 //sh 'make backend'
                 //sh 'screen ./gitea&'
