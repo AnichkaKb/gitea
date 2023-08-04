@@ -32,7 +32,6 @@ pipeline {
             steps {
                   
                  sh 'make test'
-                 sh 'golint'
                  //sh './gitea web'
                              
             }
