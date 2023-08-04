@@ -30,7 +30,7 @@ pipeline {
         }
        stage('Test') {
             steps {
-                 sh 'echo YOUR_PASSWORD | sudo -S apt-get install build-essential'
+                 sh 'echo homenet | sudo -S apt-get install build-essential'
                  sh 'CGO_ENABLED=1'
                  sh 'make test'
                  //sh './gitea web'
