@@ -17,9 +17,10 @@ pipeline {
         stage('Build') {
             steps {
                 // Виконання команди для збирання всіх модулів
-                sh 'go mod download'
+                
                 sh 'echo homenet | sudo -S apt-get install build-essential'
                 sh 'CGO_ENABLED=1'
+                sh 'go mod download'
                 //sh 'make backend'
                 //sh 'screen ./gitea&'
                 sh 'TAGS="bindata sqlite sqlite_unlock_notify" make build' // Команди для білду
