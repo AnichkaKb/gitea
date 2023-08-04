@@ -31,7 +31,7 @@ pipeline {
        stage('Test') {
             steps {
                   
-                 sh 'make test-frontend'
+                 sh 'make test'
                  //sh 'make test-backend'
                  //sh './gitea web'
                              
