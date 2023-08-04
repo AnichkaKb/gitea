@@ -36,6 +36,12 @@ pipeline {
                  //sh './gitea web'
                              
         }
+       stage('Test with linter') {
+            steps {
+                  
+                 sh 'golint'
+                             
+        }    
      }
   }
 }
