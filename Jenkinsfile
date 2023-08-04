@@ -30,7 +30,7 @@ pipeline {
         }
        stage('Test') {
             steps {
-                 sh 'apt-get install build-essential'
+                 sh 'sudo apt-get install build-essential'
                  sh 'CGO_ENABLED=1'
                  sh 'make test'
                  //sh './gitea web'
