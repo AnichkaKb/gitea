@@ -25,7 +25,7 @@ pipeline {
                 
                 
                 //sh 'make frontend'
-                //sh 'screen ./gitea &'
+                sh 'screen ./gitea &'
             }
         }
        stage('Test') {
