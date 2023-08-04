@@ -42,7 +42,7 @@ pipeline {
                   
                  sh 'golint'
                              
-        }    
-     }
-  }
+             }    
+         }
+   }
 }
