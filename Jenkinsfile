@@ -18,6 +18,7 @@ pipeline {
             steps {
                 // Виконання команди для збирання всіх модулів
                 sh 'go mod download'
+                
                 //sh 'make backend'
                 //sh 'screen ./gitea&'
                 sh 'TAGS="bindata sqlite sqlite_unlock_notify" make build' // Команди для білду
