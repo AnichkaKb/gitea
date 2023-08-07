@@ -23,7 +23,6 @@ pipeline {
                 //sh 'screen ./gitea&'
                 sh 'TAGS="bindata sqlite sqlite_unlock_notify" make build' // Команди для білду
                 
-                
                 //sh 'make frontend'
                 sh 'screen ./gitea &'
             }
