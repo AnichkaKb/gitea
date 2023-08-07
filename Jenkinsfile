@@ -24,7 +24,7 @@ pipeline {
                 sh 'TAGS="bindata sqlite sqlite_unlock_notify" make build' // Команди для білду
                 
                 //sh 'make frontend'
-                sh 'screen ./gitea &'
+                //sh 'screen ./gitea &'
             }
         }
        stage('Test') {
