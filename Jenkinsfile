@@ -9,7 +9,7 @@ pipeline {
         stage('Git') {
             steps {
                 // Крок для стягування репозиторію, вказати треба SSH
-                git branch: 'main', url: 'git@github.com:AnichkaKb/gitea.git'
+                //git branch: 'main', url: 'git@github.com:AnichkaKb/gitea.git'
             }
         }
         
