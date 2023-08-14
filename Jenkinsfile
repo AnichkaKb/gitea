@@ -16,6 +16,8 @@ pipeline {
                 script {
                     // Запуск Docker контейнера
                     sh 'docker run -d -p 8181:3000 giteaapp'
+                    sh 'docker ps'
+                    
                 }
             }
         }
