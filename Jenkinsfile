@@ -6,7 +6,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 // Стягування репозиторію за допомогою команди git з використанням SSH
-                git branch: 'main', url: 'git@github.com:AnichkaKb/gitea.git'
+                git branch: 'main', url: 'https://github.com/AnichkaKb/gitea.git'
             }
         } 
        
