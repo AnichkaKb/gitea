@@ -15,7 +15,7 @@ pipeline {
             steps {
                 script {
                     // Запуск Docker контейнера
-                    sh 'docker run -p 8080:3000 giteaapp'
+                    sh 'docker run -p 8081:3000 giteaapp'
                 }
             }
         }
