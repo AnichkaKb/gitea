@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/AnichkaKb/gitea.git'
+                git branch: 'main', url: 'git@github.com:AnichkaKb/gitea.git'
             }
         }
         
