@@ -7,7 +7,7 @@ services:
     depends_on:
       - mariadb
     environment:
-      - DB_TYPE=mysql
+      - DB_TYPE=MySQL
       - HOST=172.18.0.3:3306
       - USER=anna
       - PASSWD=homenet
