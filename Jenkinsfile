@@ -11,12 +11,20 @@ pipeline {
             }
         }
 
-        stage('Run Docker Container') {
+        stage('Build Docker Container') {
+            steps {
+                script {
+                    // Запуск Docker контейнера
+                    sh 'docker build -t giteaapp .'
+                    
+                }
+            }
+        }
+        stage('Run Docker-compose') {
             steps {
                 script {
                     // Запуск Docker контейнера
                     sh 'docker-compose up -d'
-                    
                 }
             }
         }
