@@ -1,15 +1,13 @@
-#Build stage
+# Використовуємо базовий імедж для Go з потрібною версією Node.js
 FROM docker.io/library/golang:1.20-alpine3.18 AS build-env
 
 ARG GOPROXY
 ENV GOPROXY ${GOPROXY:-direct}
 
-ARG GITEA_VERSION
 ARG TAGS="sqlite sqlite_unlock_notify"
 ENV TAGS "bindata timetzdata $TAGS"
 ARG CGO_EXTRA_CFLAGS
 
-#Build deps
 RUN apk --no-cache add build-base git nodejs npm
 
 #Setup repo
@@ -17,8 +15,7 @@ COPY . ${GOPATH}/src/code.gitea.io/gitea
 WORKDIR ${GOPATH}/src/code.gitea.io/gitea
 
 #Checkout version if set
-RUN if [ -n "${GITEA_VERSION}" ]; then git checkout "${GITEA_VERSION}"; fi \
- && make clean-all build
+RUN  make clean-all build
 
 # Begin env-to-ini build
 RUN go build contrib/environment-to-ini/environment-to-ini.go
@@ -60,6 +57,8 @@ VOLUME ["/data"]
 
 ENTRYPOINT ["/usr/bin/entrypoint"]
 CMD ["/bin/s6-svscan", "/etc/s6"]
+
+COPY custom/conf/app.ini /home/annadoc/gitea/custom/conf/
 
 COPY docker/root /
 COPY --from=build-env /go/src/code.gitea.io/gitea/gitea /app/gitea/gitea
