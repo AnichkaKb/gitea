@@ -11,6 +11,16 @@ pipeline {
             }
         }
 
+        stage('Clean Container') {
+            steps {
+                script {
+                     //Запуск Docker контейнера
+                    sh 'docker container prune'
+                    
+                }
+            }
+        
+        
         stage('Build Docker Container') {
             steps {
                 script {
@@ -28,6 +38,7 @@ pipeline {
                 }
             }
         }
+        
     }
 }
 
