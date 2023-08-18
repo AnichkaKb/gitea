@@ -14,7 +14,7 @@ pipeline {
         stage('Build Docker Container') {
             steps {
                 script {
-                     Запуск Docker контейнера
+                     //Запуск Docker контейнера
                     sh 'docker build -t giteaapp .'
                     
                 }
