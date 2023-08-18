@@ -19,7 +19,7 @@ pipeline {
                     
                 }
             }
-        
+        }
         
         stage('Build Docker Container') {
             steps {
@@ -37,7 +37,6 @@ pipeline {
                     sh 'docker-compose up -d'
                 }
             }
-        }
-        }  
+        } 
     }
 }
