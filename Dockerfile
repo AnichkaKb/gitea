@@ -8,7 +8,7 @@ ARG TAGS="sqlite sqlite_unlock_notify"
 ENV TAGS "bindata timetzdata $TAGS"
 ARG CGO_EXTRA_CFLAGS
 
-RUN apk --no-cache add build-base git nodejs npm
+RUN apk --no-cache add build-base git nodejs npm sed
 
 #Setup repo
 COPY . ${GOPATH}/src/code.gitea.io/gitea
@@ -36,7 +36,8 @@ RUN apk --no-cache add \
     s6 \
     sqlite \
     su-exec \
-    gnupg
+    gnupg \
+    sed
 
 RUN addgroup \
     -S -g 1000 \
@@ -58,7 +59,7 @@ VOLUME ["/data"]
 ENTRYPOINT ["/usr/bin/entrypoint"]
 CMD ["/bin/s6-svscan", "/etc/s6"]
 
-COPY custom/conf/app.ini /home/annadoc/gitea/custom/conf/
+COPY ./custom/conf/app.ini /home/annadoc/gitea/custom/conf/app.ini
 
 COPY docker/root /
 COPY --from=build-env /go/src/code.gitea.io/gitea/gitea /app/gitea/gitea
