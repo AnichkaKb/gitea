@@ -9,16 +9,34 @@ pipeline {
                 // Крок для забору коду з репозиторію (git checkout та інше)
                 checkout scm
             }
-        }
+         }
 
-        stage('Run Docker Container') {
+         stage('Clean Container') {
+             steps {
+                script {
+                     
+                    sh 'docker container prune'
+                    
+                }
+            }
+         }
+        
+        stage('Build Docker Container') {
             steps {
                 script {
-                    // Запуск Docker контейнера
-                    sh 'docker-compose up -d'
+                     //Запуск Docker контейнера
+                    sh 'docker build -t giteaapp .'
                     
                 }
             }
         }
+        stage('Run Docker-compose') {
+            steps {
+                script {
+                    // Запуск Docker контейнера
+                    sh 'docker-compose up -d'
+                }
+            }
+        } 
     }
 }
