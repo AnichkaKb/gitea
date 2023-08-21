@@ -1,0 +1,31 @@
+version: '3'
+services:
+  mariadb:
+    image: 'mariadb:10.6.12'
+    container_name: 'mariadbcontainer'
+    environment:
+      - MYSQL_DATABASE=gitea
+      - MYSQL_USER=anna
+      - MYSQL_PASSWORD=homenet
+      - MYSQL_ROOT_PASSWORD=homenet
+    ports:
+      - "3306:3306"
+    volumes:
+      - mariadb_data:/var/lib/mysql
+  giteaapp:
+    image: giteaapp
+    ports:
+      - "8080:3000" # Перенаправлення портів для вашого додатку
+    depends_on:
+      - mariadb
+    environment:
+      - DB_HOST=mariadb
+      - DB_TYPE=MySQL
+      - DB_NAME=gitea
+      - DB_USER=anna
+      - DB_PASSWD=homenet
+    volumes:
+      - ./custom/conf/app.ini:/gitea/custom/conf/app.ini
+volumes:
+  mariadb_data:
+
