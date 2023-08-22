@@ -21,7 +21,7 @@ pipeline {
             }
          }
         
-        stage('Build Docker Container') {
+     /*   stage('Build Docker Container') {
             steps {
                 script {
                      //Запуск Docker контейнера
@@ -29,7 +29,8 @@ pipeline {
                     
                 }
             }
-        }
+        } 
+    */
         stage('Run Docker-compose') {
             steps {
                 script {
@@ -41,8 +42,8 @@ pipeline {
         stage('Deploy Docker') {
             steps {
                 script {
-                    // Запуск Docker контейнера
-                    sh 'docker-compose up -d'
+                    sh 'scp docker-compose.yml jenkins@192.168.56.115:/gitea'
+                    sh 'ssh jenkins@192.168.56.115 "cd gitea && docker-compose up -d"'
                 }
             }
         }         
