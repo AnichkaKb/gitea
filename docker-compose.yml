@@ -25,7 +25,7 @@ services:
       - DB_USER=anna
       - DB_PASSWD=homenet
     volumes:
-      - ./custom/conf/app.ini:/gitea/custom/conf/app.ini
+      - ./custom/conf/app.ini:./custom/conf/app.ini
 volumes:
   mariadb_data:
 
