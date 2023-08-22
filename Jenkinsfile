@@ -16,6 +16,8 @@ pipeline {
                 script {
                      
                     sh 'docker container prune'
+                    sh 'docker stop $(docker ps -q)'
+
                     
                 }
             }
