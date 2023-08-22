@@ -23,7 +23,7 @@ pipeline {
             }
          }
         
-     /*   stage('Build Docker Container') {
+        stage('Build Docker Container') {
             steps {
                 script {
                      //Запуск Docker контейнера
@@ -32,7 +32,7 @@ pipeline {
                 }
             }
         } 
-    */
+    
         stage('Run Docker-compose') {
             steps {
                 script {
