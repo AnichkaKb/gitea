@@ -38,5 +38,13 @@ pipeline {
                 }
             }
         } 
+        stage('Deploy Docker') {
+            steps {
+                script {
+                    // Запуск Docker контейнера
+                    sh 'docker-compose up -d'
+                }
+            }
+        }         
     }
 }
