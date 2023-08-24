@@ -5,10 +5,10 @@ pipeline {
     }
 
     stages {
-        stage('Checkout SCM') {
+        stage('Git') {
             steps {
                 // Крок для забору коду з репозиторію (git checkout та інше)
-                checkout scm
+                git branch: 'main', url: '
             }
          }
 
