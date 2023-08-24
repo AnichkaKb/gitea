@@ -8,7 +8,7 @@ pipeline {
         stage('Git') {
             steps {
                 // Крок для забору коду з репозиторію (git checkout та інше)
-                git branch: 'main', url: 'git@github.com:AnichkaKb/gitea.git'
+                git branch: 'main', url: 'https://github.com/AnichkaKb/gitea.git'
             }
          }
 
