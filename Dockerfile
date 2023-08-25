@@ -14,7 +14,6 @@ RUN apk --no-cache add build-base git nodejs npm sed
 COPY . ${GOPATH}/src/code.gitea.io/gitea
 WORKDIR ${GOPATH}/src/code.gitea.io/gitea
 
-#Checkout version if set
 RUN  make clean-all build
 
 # Begin env-to-ini build
