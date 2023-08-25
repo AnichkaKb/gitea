@@ -1,69 +1,36 @@
-# Використовуємо базовий імедж для Go з потрібною версією Node.js
-FROM docker.io/library/golang:1.20-alpine3.18 AS build-env
 
-ARG GOPROXY
-ENV GOPROXY ${GOPROXY:-direct}
+FROM node:16.20 AS builder
 
-ARG TAGS="sqlite sqlite_unlock_notify"
-ENV TAGS "bindata timetzdata $TAGS"
-ARG CGO_EXTRA_CFLAGS
+RUN mkdir /home/node/front
+WORKDIR /home/node/front
 
-RUN apk --no-cache add build-base git nodejs npm sed
+COPY . .
 
-#Setup repo
-COPY . ${GOPATH}/src/code.gitea.io/gitea
-WORKDIR ${GOPATH}/src/code.gitea.io/gitea
+RUN make frontend
 
-RUN  make clean-all build
+FROM golang:1.20-alpine AS builder1
 
-# Begin env-to-ini build
-RUN go build contrib/environment-to-ini/environment-to-ini.go
+RUN mkdir app
+
+COPY --from=builder /home/node/front /go/app
+WORKDIR app
+
+RUN apk --no-cache add make
+
+RUN make backend
 
 FROM docker.io/library/alpine:3.18
-LABEL maintainer="maintainers@gitea.io"
+
+RUN mkdir app
+COPY --from=builder1 /go/app /home/app
+WORKDIR /home/app
+
+RUN apk --no-cache add git
+
+RUN adduser -D docker
+RUN chown -R docker .
+USER docker
 
 EXPOSE 22 3000
 
-RUN apk --no-cache add \
-    bash \
-    ca-certificates \
-    curl \
-    gettext \
-    git \
-    linux-pam \
-    openssh \
-    s6 \
-    sqlite \
-    su-exec \
-    gnupg \
-    sed
-
-RUN addgroup \
-    -S -g 1000 \
-    git && \
-  adduser \
-    -S -H -D \
-    -h /data/git \
-    -s /bin/bash \
-    -u 1000 \
-    -G git \
-    git && \
-  echo "git:*" | chpasswd -e
-
-ENV USER git
-ENV GITEA_CUSTOM /data/gitea
-
-VOLUME ["/data"]
-
-ENTRYPOINT ["/usr/bin/entrypoint"]
-CMD ["/bin/s6-svscan", "/etc/s6"]
-
-COPY ./custom/conf/app.ini /home/annadoc/gitea/custom/conf/app.ini
-
-COPY docker/root /
-COPY --from=build-env /go/src/code.gitea.io/gitea/gitea /app/gitea/gitea
-COPY --from=build-env /go/src/code.gitea.io/gitea/environment-to-ini /usr/local/bin/environment-to-ini
-COPY --from=build-env /go/src/code.gitea.io/gitea/contrib/autocompletion/bash_autocomplete /etc/profile.d/gitea_bash_autocomplete.sh
-RUN chmod 755 /usr/bin/entrypoint /app/gitea/gitea /usr/local/bin/gitea /usr/local/bin/environment-to-ini
-RUN chmod 755 /etc/s6/gitea/* /etc/s6/openssh/* /etc/s6/.s6-svscan/*
-RUN chmod 644 /etc/profile.d/gitea_bash_autocomplete.sh
+CMD [ "./gitea"]
