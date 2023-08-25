@@ -27,7 +27,7 @@ pipeline {
         stage('Build Docker Container') {
             steps {
                 script {
-                     //Запуск Docker контейнера
+                     
                     sh 'docker build -t giteaapp .'
                     
                 }
@@ -37,7 +37,7 @@ pipeline {
         stage('Run Docker-compose') {
             steps {
                 script {
-                    // Запуск Docker контейнера
+                    
                     sh 'docker-compose up -d'
                 }
             }
