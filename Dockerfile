@@ -33,4 +33,6 @@ USER docker
 
 EXPOSE 22 3000
 
+COPY custom/conf/app.ini /home/annadoc/gitea/custom/conf/
+
 CMD [ "./gitea"]
