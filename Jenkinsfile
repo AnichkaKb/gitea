@@ -47,7 +47,7 @@ pipeline {
                 script {
                     sh 'scp docker-compose.yml jenkins@192.168.56.103:/home/jenkins/'
                     sh 'scp  -r custom/conf jenkins@192.168.56.103:/home/jenkins/'
-                    sh 'ssh jenkins@192.168.56.103 "docker-compose up -d"'
+                    sh 'ssh jenkins@192.168.56.103 "docker-compose up"'
                 }
             }
         }         
