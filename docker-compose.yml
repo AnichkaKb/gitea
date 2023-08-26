@@ -15,7 +15,7 @@ services:
   giteaapp:
     image: 'anicnkakb/giteaapp'
     ports:
-      - "8080:3000" # Перенаправлення портів для вашого додатку
+      - "8080:3000" # Перенаправлення портів для додатку
     depends_on:
       - mariadb
     environment:
