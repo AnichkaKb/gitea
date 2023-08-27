@@ -45,9 +45,9 @@ pipeline {
         stage('Deploy Docker') {
             steps {
                 script {
-                    sh 'scp docker-compose.yml jenkins@192.168.56.103:/home/jenkins/'
-                    sh 'scp  -r custom/conf jenkins@192.168.56.103:/home/jenkins/'
-                    sh 'ssh jenkins@192.168.56.103 "docker-compose up"'
+                    sh 'scp docker-compose.yml jenkins@192.168.56.101:/home/jenkins/'
+                    sh 'scp  -r custom/conf jenkins@192.168.56.101:/home/jenkins/'
+                    sh 'ssh jenkins@192.168.56.101 "docker-compose up"'
                 }
             }
         }         
