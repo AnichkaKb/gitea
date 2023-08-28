@@ -25,6 +25,10 @@ RUN mkdir app
 COPY --from=builder1 /go/app /home/app
 WORKDIR /home/app
 
+RUN mkdir -p /home/annadoc/gitea/data/tmp/package-upload
+
+RUN chown -R 1000 /home/annadoc/gitea/data/tmp/package-upload
+
 RUN apk --no-cache add git
 
 RUN adduser -D docker
