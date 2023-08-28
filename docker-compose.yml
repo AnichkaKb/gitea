@@ -6,8 +6,8 @@ services:
     environment:
       - MYSQL_DATABASE=gitea
       - MYSQL_USER=anna
-      - MYSQL_PASSWORD=homenet
-      - MYSQL_ROOT_PASSWORD=homenet
+      - MYSQL_PASSWORD=${DB_PASSWORD}
+      - MYSQL_ROOT_PASSWORD=${DB_PASSWORD}
     ports:
       - "3306:3306"
     volumes:
@@ -23,7 +23,7 @@ services:
       - DB_TYPE=MySQL
       - DB_NAME=gitea
       - DB_USER=anna
-      - DB_PASSWD=homenet
+      - DB_PASSWD=${DB_PASSWORD}
 volumes:
   mariadb_data:
 
